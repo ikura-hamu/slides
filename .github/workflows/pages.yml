@@ -35,13 +35,16 @@ jobs:
       - name: Covert to html and pdf
         uses: KoharaKazuya/marp-cli-action@v2
 
+      - name: Copy images
+        run: |
+          cp -r src/images docs/images
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: 'docs'
+          path: "docs"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
