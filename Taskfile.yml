@@ -1,0 +1,26 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  DOCKER_BASE_COMMAND: 'docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli'
+
+tasks:
+  build:
+    cmds:
+      - npx marp src/{{.LATEST_FILE}}.md --no-config --themeSet themes/ -o docs/{{.LATEST_FILE}}.html  --html
+    vars:
+      LATEST_FILE:
+        sh: ls src -t1 | grep .md | head -n1 | sed -e 's/\.md//g'
+  serve:
+    cmds:
+      - npx marp -s
+    silent: true
+  ogp:
+    cmds:
+      - "{{.DOCKER_BASE_COMMAND}} --image png -o image/ogp/"
+    silent: true
+  pdf:
+    cmds:
+      -  "{{.DOCKER_BASE_COMMAND}} --pdf"
+    silent: true

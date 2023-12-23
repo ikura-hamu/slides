@@ -1,0 +1,7 @@
+allowLocalFiles: true
+html: true
+author: ikura-hamu
+inputDir: ./src
+output: ./docs
+lang: ja-JP
+themeSet: ./themes/

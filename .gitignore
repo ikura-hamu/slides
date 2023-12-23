@@ -1,0 +1,4 @@
+docs/*
+!docs/.gitkeep
+.vscode
+sample.md

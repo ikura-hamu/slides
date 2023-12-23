@@ -1,0 +1,106 @@
+/* @theme ikura */
+
+@import 'gaia';
+
+:root {
+    --primary: #1e569a;
+    --secondary: #b9bd83;
+    --gray: #E5E5E5;
+
+    --color-background: whitesmoke;
+    --color-foreground: #333;
+    --color-highlight: var(--primary);
+    --color-dimmed: #888;
+}
+
+footer {
+    background: linear-gradient(to right, var(--color-background), var(--primary));
+    bottom: 0;
+    height: 40px;
+    left: 3%;
+    color: var(--gray);
+    text-align: right;
+    padding-top: 0px;
+}
+
+section::after {
+    content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+    font-size: 1rem;
+    position: absolute;
+    bottom: 20px;
+}
+
+section a {
+    font-weight: bold;
+}
+
+section strong {
+    color: var(--primary);
+}
+
+section h1 {
+    margin-top: 30px;
+    color: var(--primary);
+}
+
+section h2 {
+    font-size: 1.3em;
+}
+
+
+/* title */
+
+section.title {
+    background-color: var(--primary);
+    padding-top: 120px;
+}
+
+section.title h1 {
+    position: relative;
+    text-align: center;
+    padding-top: 70px;
+    color: whitesmoke;
+}
+
+section.title h1::after{
+    content: "";
+    display: block;
+    width: 70%;
+    height: 5px;
+    background-color: var(--secondary);
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+
+section.title h2 {
+    position: relative;
+    text-align: center;
+    padding-top: 30px;
+    color: whitesmoke;
+    font-size: 40px;
+}
+
+section.title footer {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: var(--secondary);
+}
+
+/* small */
+
+section.small {
+    font-size: 24px;
+}
+
+section.small h1 {
+    font-size: 63px;
+}
+
+section.small h2 {
+    font-size: 45px;
+}
+
+.small {
+    font-size: 24px;
+}
