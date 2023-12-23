@@ -6,21 +6,37 @@ vars:
   DOCKER_BASE_COMMAND: 'docker run --rm --init -v $PWD:/home/marp/app/ -e LANG=$LANG -e MARP_USER="$(id -u):$(id -g)" marpteam/marp-cli'
 
 tasks:
+  new:
+    desc: 新しいスライドを作る。task new -- [file_name]
+    cmds:
+      - mkdir -p src/images/{{.CLI_ARGS}}
+      - cat template.md > src/{{.CLI_ARGS}}.md
+      - sed -i "s/{file_name}/{{.CLI_ARGS}}/" src/{{.CLI_ARGS}}.md
+    silent: true
+
   build:
+    desc: 最新のスライドをビルドする
     cmds:
       - npx marp src/{{.LATEST_FILE}}.md --no-config --themeSet themes/ -o docs/{{.LATEST_FILE}}.html  --html
     vars:
       LATEST_FILE:
         sh: ls src -t1 | grep .md | head -n1 | sed -e 's/\.md//g'
+    silent: true
+
   serve:
+    desc: ローカルサーバーを立ち上げる
     cmds:
       - npx marp -s
     silent: true
+
   ogp:
+    desc: OGP画像を生成する
     cmds:
       - "{{.DOCKER_BASE_COMMAND}} --image png -o image/ogp/"
     silent: true
+
   pdf:
+    desc: PDFを生成する
     cmds:
       -  "{{.DOCKER_BASE_COMMAND}} --pdf"
     silent: true
