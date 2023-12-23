@@ -32,6 +32,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: actions/setup-go@v4
+        with:
+          go-version: "1.21.x"
+
+      - name: Create index.html
+        run: |
+          go build -C bin -o template template.go
+          cd bin && ./template
+
       - name: Covert to html and pdf
         uses: KoharaKazuya/marp-cli-action@v2
 
